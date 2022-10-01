@@ -1,2 +1,3 @@
+print("hello from bryce/init.lua")
 require("bryce.set")
-print("Hello from /lua/bryce/init.lua")
+require("bryce.remap")

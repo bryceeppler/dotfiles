@@ -1,3 +1,4 @@
+print("hello from set")
 vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.termguicolors = true
@@ -12,4 +13,8 @@ vim.opt.incsearch = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
 
-vim.g.mapleader = " "
+vim.opt.colorcolumn = "80"
+vim.opt.signcolumn = "yes"
+vim.opt.hidden = true
+
+vim.g.mapleader = ' '
