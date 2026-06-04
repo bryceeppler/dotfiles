@@ -1,214 +1,49 @@
-# ~/.config/starship.toml
-# Minimal prompt - just directory and git branch
-
+# ~/.config/starship.toml — lean prompt, GitHub Dark palette. Managed in ~/dotfiles.
+# Layout:  [venv] dir on  branch <git-status> ❯
 "$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = false
+format = "$python$directory$git_branch$git_status$character"
 
-# Define what shows in your prompt (and nothing else!)
-format = """
-$directory\
-$git_branch\
-$character """
-
-# Directory - just current folder name
+# Current directory — truncated to the repo root, GitHub "blue"
 [directory]
-# truncation_length = 2
-truncate_to_repo = true
 format = "[$path]($style) "
-style = "red"
-
-# Git branch - clean and simple
-[git_branch]
-format = "[$branch]($style) "
-style = "blue"
-truncation_length = 8
+style = "#58a6ff bold"
+truncate_to_repo = true
+truncation_length = 3
 truncation_symbol = ""
 
-# The prompt character
-[character]
-success_symbol = "[›](bold yellow)"
-error_symbol = "[›](bold red)"
+# Git branch — "on  <branch>", GitHub "purple"
+[git_branch]
+symbol = " "
+format = "[on ](#6e7681)[$symbol$branch](#bc8cff) "
+truncation_length = 20
+truncation_symbol = "…"
 
-# Disable EVERYTHING else
-[aws]
-disabled = true
+# Git status — only shows when there's something to report (GitHub "yellow")
+[git_status]
+style = "#d29922"
+format = '([$all_status$ahead_behind]($style) )'
+conflicted = "=${count}"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "*${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
 
-[azure]
-disabled = true
-
-[cmd_duration]
-disabled = true
-
-[conda]
-disabled = true
-
-[dart]
-disabled = true
-
-[docker_context]
-disabled = true
-
-[dotnet]
-disabled = true
-
-[elixir]
-disabled = true
-
-[elm]
-disabled = true
-
-[erlang]
-disabled = true
-
-[gcloud]
-disabled = true
-
-[golang]
-disabled = true
-
-[haskell]
-disabled = true
-
-[helm]
-disabled = true
-
-[java]
-disabled = true
-
-[julia]
-disabled = true
-
-[kotlin]
-disabled = true
-
-[kubernetes]
-disabled = true
-
-[lua]
-disabled = true
-
-[memory_usage]
-disabled = true
-
-[nim]
-disabled = true
-
-[nix_shell]
-disabled = true
-
-[nodejs]
-disabled = true
-
-[package]
-disabled = true
-
-[perl]
-disabled = true
-
-[php]
-disabled = true
-
+# Active Python virtualenv only (no version noise) — shows as "(.venv)"
 [python]
-disabled = true
+disabled = false
+symbol = ""
+style = "#6e7681"
+format = '[(\($virtualenv\) )]($style)'
 
-[ruby]
-disabled = true
-
-[rust]
-disabled = true
-
-[scala]
-disabled = true
-
-[swift]
-disabled = true
-
-[terraform]
-disabled = true
-
-[time]
-disabled = true
-
-[username]
-disabled = true
-
-[vagrant]
-disabled = true
-
-[zig]
-disabled = true
-
-[buf]
-disabled = true
-
-[cmake]
-disabled = true
-
-[cobol]
-disabled = true
-
-[crystal]
-disabled = true
-
-[daml]
-disabled = true
-
-[deno]
-disabled = true
-
-[fennel]
-disabled = true
-
-[fossil_branch]
-disabled = true
-
-[gradle]
-disabled = true
-
-[haxe]
-disabled = true
-
-[hg_branch]
-disabled = true
-
-[meson]
-disabled = true
-
-[ocaml]
-disabled = true
-
-[opa]
-disabled = true
-
-[os]
-disabled = true
-
-[pijul_channel]
-disabled = true
-
-[pulumi]
-disabled = true
-
-[purescript]
-disabled = true
-
-[raku]
-disabled = true
-
-[red]
-disabled = true
-
-[rlang]
-disabled = true
-
-[spack]
-disabled = true
-
-[sudo]
-disabled = true
-
-[vlang]
-disabled = true
-
-[vcsh]
-disabled = true
+# Prompt character — green ❯ on success, red ❯ after a failed command
+[character]
+success_symbol = "[❯](#3fb950)"
+error_symbol = "[❯](#ff7b72)"
+vimcmd_symbol = "[❮](#d29922)"

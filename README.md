@@ -38,13 +38,21 @@ its **custom preferences folder** feature so it's version-controlled.
 3. When prompted, choose **Load** (loads the committed plist).
 4. Set the save dropdown to **Automatically** so changes flow back to the repo on quit.
 
-**Theme:** colors are Catppuccin Macchiato, installed as a reusable **Color Preset**
-(Settings → Profiles → Colors → Color Presets). To switch themes, import a `.itermcolors`
-file as a preset and apply it — don't hand-edit individual colors. Browse presets at
-https://github.com/mbadolato/iTerm2-Color-Schemes.
+**Theme:** **GitHub Dark Default**, matching the Cursor/VS Code editor theme. Colors were
+pulled directly from the installed `github-vscode-theme` and installed as a reusable
+**Color Preset** named "GitHub Dark Default" (Settings → Profiles → Colors → Color Presets).
+To switch themes, import a `.itermcolors` file as a preset and apply it — don't hand-edit
+individual colors. Browse presets at https://github.com/mbadolato/iTerm2-Color-Schemes.
 
-**Font:** FiraCode Nerd Font Mono (size 14) so Neovim/NvChad icons render. The matching
-NvChad base46 theme is `catppuccin`.
+**Font:** FiraCode Nerd Font Mono (size 14) so Neovim/NvChad icons render.
+
+## Matching themes everywhere
+
+Everything is on **GitHub Dark**:
+- iTerm2 → "GitHub Dark Default" color preset (above).
+- Neovim → NvChad base46 theme `github_dark` (set in `~/.config/nvim/lua/custom/chadrc.lua`).
+- starship prompt → recolored with the GitHub Dark palette (blue dir, purple branch,
+  yellow git status, green/red prompt character).
 
 ## Backups
 
