@@ -1,28 +1,33 @@
-# ~/.config/starship.toml — lean prompt, GitHub Dark palette. Managed in ~/dotfiles.
+# ~/.config/starship.toml — lean prompt. Managed in ~/dotfiles.
 # Layout:  [venv] dir on  branch <git-status> ❯
+#
+# Colors use ANSI NAMES (blue/purple/green/...) not hex, so the prompt inherits
+# whatever iTerm2 color preset is active. Change the iTerm theme → the prompt
+# re-themes automatically. (ansi: blue=4, purple=5, green=2, yellow=3, red=1,
+# bright-black=8/gray.)
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false
 format = "$python$directory$git_branch$git_status$character"
 
-# Current directory — truncated to the repo root, GitHub "blue"
+# Current directory — truncated to the repo root
 [directory]
 format = "[$path]($style) "
-style = "#58a6ff bold"
+style = "blue bold"
 truncate_to_repo = true
 truncation_length = 3
 truncation_symbol = ""
 
-# Git branch — "on  <branch>", GitHub "purple"
+# Git branch — "on  <branch>"
 [git_branch]
 symbol = " "
-format = "[on ](#6e7681)[$symbol$branch](#bc8cff) "
+format = "[on ](bright-black)[$symbol$branch](purple) "
 truncation_length = 20
 truncation_symbol = "…"
 
-# Git status — only shows when there's something to report (GitHub "yellow")
+# Git status — only shows when there's something to report
 [git_status]
-style = "#d29922"
+style = "yellow"
 format = '([$all_status$ahead_behind]($style) )'
 conflicted = "=${count}"
 ahead = "⇡${count}"
@@ -39,11 +44,11 @@ deleted = "✘${count}"
 [python]
 disabled = false
 symbol = ""
-style = "#6e7681"
+style = "bright-black"
 format = '[(\($virtualenv\) )]($style)'
 
 # Prompt character — green ❯ on success, red ❯ after a failed command
 [character]
-success_symbol = "[❯](#3fb950)"
-error_symbol = "[❯](#ff7b72)"
-vimcmd_symbol = "[❮](#d29922)"
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](yellow)"

@@ -1,6 +1,8 @@
 .DS_Store
 *.swp
 
-# iTerm2 writes runtime/state files into its prefs folder — track only the plist.
+# iTerm2 writes runtime/state files into its prefs folder — track only the
+# settings plist and any exported color presets.
 iterm2/*
 !iterm2/com.googlecode.iterm2.plist
+!iterm2/*.itermcolors
