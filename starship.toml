@@ -1,34 +1,38 @@
-# ~/.config/starship.toml — lean prompt. Managed in ~/dotfiles.
-# Layout:  [venv] dir branch <git-status> ❯
+# ~/.config/starship.toml — clean two-line prompt: frame + Nerd Font icons.
+# Managed in ~/dotfiles. ANSI color names → the prompt follows the active
+# iTerm2 color preset (GitHub Dark right now).
 #
-# Colors use ANSI NAMES (blue/purple/green/...) not hex, so the prompt inherits
-# whatever iTerm2 color preset is active. Change the iTerm theme → the prompt
-# re-themes automatically. (ansi: blue=4, purple=5, green=2, yellow=3, red=1,
-# bright-black=8/gray.)
+# Layout:
+#   ╭─  dir   branch <status>
+#   ╰─ ❯
 "$schema" = 'https://starship.rs/config-schema.json'
 
-add_newline = false
-format = "$python$directory$git_branch$git_status$character"
+add_newline = true   # blank line above each prompt for breathing room
 
-# Current directory — truncated to the repo root
+format = """
+[╭─](bright-black)$directory$git_branch$git_status$python
+[╰─ ](bright-black)$character """
+
+# Directory — folder icon + repo-truncated path, GitHub blue
 [directory]
-format = "[$path]($style) "
+format = "[  $path]($style)"
 style = "blue bold"
 truncate_to_repo = true
 truncation_length = 3
 truncation_symbol = ""
 
-# Git branch — just the branch name.
+# Git branch — branch icon + name, GitHub purple
 [git_branch]
-format = "[$branch](purple) "
+symbol = " "
+format = "[  $symbol$branch]($style)"
+style = "purple"
 truncation_length = 24
 truncation_symbol = "…"
 
-# Git status — only shows when there's something to report
+# Git status — single symbols, GitHub yellow, only shows when dirty
 [git_status]
 style = "yellow"
-format = '([$all_status]($style) )'
-# Working-tree state as single symbols — no counts.
+format = "([ $all_status]($style))"
 conflicted = "="
 untracked = "?"
 stashed = ""
@@ -37,15 +41,14 @@ staged = "+"
 renamed = "»"
 deleted = "✘"
 
-# Active Python virtualenv only (no version noise) — shows as "(.venv)"
+# Active Python virtualenv only — dim, shows as "(.venv)"
 [python]
 disabled = false
-symbol = ""
 style = "bright-black"
-format = '[(\($virtualenv\) )]($style)'
+format = "[ (\\($virtualenv\\))]($style)"
 
-# Prompt character — green ❯ on success, red ❯ after a failed command
+# Prompt character on line 2 — green ❯ ok, red ❯ failed
 [character]
-success_symbol = "[❯](green)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](yellow)"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold yellow)"
