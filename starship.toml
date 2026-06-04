@@ -1,5 +1,5 @@
 # ~/.config/starship.toml — lean prompt. Managed in ~/dotfiles.
-# Layout:  [venv] dir on  branch <git-status> ❯
+# Layout:  [venv] dir on branch <git-status> ❯
 #
 # Colors use ANSI NAMES (blue/purple/green/...) not hex, so the prompt inherits
 # whatever iTerm2 color preset is active. Change the iTerm theme → the prompt
@@ -18,27 +18,29 @@ truncate_to_repo = true
 truncation_length = 3
 truncation_symbol = ""
 
-# Git branch — "on  <branch>"
+# Git branch — "on <branch>". No glyph: some fonts render the branch icon as a
+# blank-width space, which showed up as a double space before "on".
 [git_branch]
-symbol = " "
-format = "[on ](bright-black)[$symbol$branch](purple) "
-truncation_length = 20
+format = "[on ](bright-black)[$branch](purple) "
+truncation_length = 24
 truncation_symbol = "…"
 
 # Git status — only shows when there's something to report
 [git_status]
 style = "yellow"
 format = '([$all_status$ahead_behind]($style) )'
-conflicted = "=${count}"
+# Working-tree state as single symbols — no counts (they read as noise).
+# Only ahead/behind keep a number, since "how many commits" is actually useful.
+conflicted = "="
 ahead = "⇡${count}"
 behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-untracked = "?${count}"
-stashed = "*${count}"
-modified = "!${count}"
-staged = "+${count}"
-renamed = "»${count}"
-deleted = "✘${count}"
+diverged = "⇕"
+untracked = "?"
+stashed = ""
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
 
 # Active Python virtualenv only (no version noise) — shows as "(.venv)"
 [python]
