@@ -4,9 +4,6 @@
 # Homebrew (sets PATH, MANPATH, etc.)
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# AWS Elastic Beanstalk CLI
-export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
-
 # Tools that install into ~/.local/bin (uv, rustup, etc.)
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 

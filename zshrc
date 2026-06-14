@@ -40,18 +40,15 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# --- NVM (lazy-loaded so new shells start instantly) ---
-export NVM_DIR="$HOME/Library/Application Support/Herd/config/nvm"
-_load_nvm() {
-  unset -f nvm node npm 2>/dev/null
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-}
-nvm()  { _load_nvm; nvm "$@"; }
-node() { _load_nvm; node "$@"; }
-npm()  { _load_nvm; npm "$@"; }
+# --- Node (fnm: fast Rust nvm replacement; auto-switches per .node-version/.nvmrc) ---
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # --- BUN ---
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# --- PYTHON (uv owns interpreters, venvs & tools — see ~/dotfiles/TOOLCHAIN.md) ---
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
 
 # --- PROMPT (starship) ---
 eval "$(starship init zsh)"
