@@ -33,10 +33,12 @@ only as a dependency of its own formulae (ffmpeg, httpie, libass, …); never us
 | Update uv | `uv self update` |
 
 **Don't** `brew install python@x` for dev, `pip install --user`, or hand-roll venvs from a
-brew python. `python@3.11` is kept *only* because two older venvs (`~/git/scripts`,
-`~/git/snapcaster/backend/scraper/v3`) were built on it — migrate them to uv
-(`uv venv && uv pip install -r requirements.txt`) and it can be removed too.
-Apple's `/usr/bin/python3` is system-managed — leave it.
+brew python. Brew now has **zero** Python leaves — `python@3.12`/`3.13` exist only as
+formula dependencies. Apple's `/usr/bin/python3` is system-managed — leave it.
+
+uv venvs ship **without pip** by design. Inside an activated venv, install with
+`uv pip install <pkg>` (not `pip install`); uv detects `VIRTUAL_ENV` automatically. If you
+want classic `pip` in a venv, create it with `uv venv --seed`.
 
 ## Per-project setup (preferred over anything global)
 
