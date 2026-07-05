@@ -65,6 +65,10 @@ config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
 config.scrollback_lines = 10000
 config.audible_bell = 'Disabled'
 config.default_cursor_style = 'SteadyBlock'
+-- Make the block cursor invert whatever cell it's over (like iTerm's "smart
+-- cursor color") instead of forcing cursor_fg/cursor_bg. Without this, the block
+-- cursor blacks out the first character of dim text such as zsh autosuggestions.
+config.force_reverse_video_cursor = true
 config.adjust_window_size_when_changing_font_size = false
 config.max_fps = 120
 
