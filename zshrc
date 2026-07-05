@@ -50,6 +50,15 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 
+# --- FZF (fuzzy finder: Ctrl-R history, Ctrl-T files, Alt-C cd into dir) ---
+if command -v fzf >/dev/null; then
+  source <(fzf --zsh)                 # completion + keybindings (fzf 0.48+)
+  # Use fd for file/dir listings so Ctrl-T and Alt-C respect .gitignore.
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+fi
+
 # --- PROMPT (starship) ---
 eval "$(starship init zsh)"
 
