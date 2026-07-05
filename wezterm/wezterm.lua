@@ -14,38 +14,14 @@ config.font = wezterm.font_with_fallback {
 config.font_size = 14.0
 
 -- ── Colors: GitHub Dark Default ────────────────────────────────────────
--- Pulled from ~/dotfiles/iterm2/GitHub Dark Default.itermcolors so the
--- terminal palette is identical across iTerm2, WezTerm, and Neovim.
+-- Selected as a named theme, defined in colors/GitHub Dark Default.toml
+-- (auto-loaded from ~/.config/wezterm/colors/). Its palette is byte-for-byte
+-- the same as Neovim's github_dark_default and the iTerm2 preset.
+config.color_scheme = 'GitHub Dark Default'
+
+-- Tab-bar styling layered on top of the scheme (tab_bar isn't part of the
+-- theme file; colors here override/extend the selected color_scheme).
 config.colors = {
-  foreground = '#e6edf3',
-  background = '#0d1117',
-  cursor_bg = '#e6edf3',
-  cursor_fg = '#0d1117',
-  cursor_border = '#e6edf3',
-  selection_bg = '#264f78',
-  selection_fg = '#e6edf3',
-
-  ansi = {
-    '#484f58', -- black
-    '#ff7b72', -- red
-    '#3fb950', -- green
-    '#d29922', -- yellow
-    '#58a6ff', -- blue
-    '#bc8cff', -- magenta
-    '#39c5cf', -- cyan
-    '#b1bac4', -- white
-  },
-  brights = {
-    '#6e7681', -- bright black
-    '#ffa198', -- bright red
-    '#56d364', -- bright green
-    '#e3b341', -- bright yellow
-    '#79c0ff', -- bright blue
-    '#d2a8ff', -- bright magenta
-    '#56d4dd', -- bright cyan
-    '#ffffff', -- bright white
-  },
-
   tab_bar = {
     background = '#0d1117',
     active_tab = { bg_color = '#161b22', fg_color = '#e6edf3', intensity = 'Bold' },

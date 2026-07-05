@@ -60,7 +60,8 @@ individual colors. Browse presets at https://github.com/mbadolato/iTerm2-Color-S
 ## Matching themes everywhere
 
 Everything is on **GitHub Dark Default**:
-- WezTerm → explicit palette in `wezterm/wezterm.lua` (from the itermcolors file).
+- WezTerm → named scheme `GitHub Dark Default` in `wezterm/colors/GitHub Dark Default.toml`
+  (auto-loaded from `~/.config/wezterm/colors/`, selected via `color_scheme` in wezterm.lua).
 - tmux → GitHub Dark status bar + RGB passthrough in `tmux/tmux.conf`.
 - iTerm2 → "GitHub Dark Default" color preset.
 - Neovim → `projekt0n/github-nvim-theme`, colorscheme `github_dark_default`
