@@ -60,7 +60,13 @@ config.colors = {
 config.use_fancy_tab_bar = false          -- simple, retro tab bar
 config.hide_tab_bar_if_only_one_tab = true -- no tab bar clutter with one tab
 config.tab_bar_at_bottom = false
-config.window_decorations = 'RESIZE|TITLE' -- keep the native macOS title bar
+-- Frameless window: no macOS title bar and no stoplight (traffic-light) buttons.
+-- Close/quit with Cmd+W / Cmd+Q, minimize with Cmd+M (see note in the cheat sheet).
+config.window_decorations = 'RESIZE'
+-- Frosted-glass background. Lower opacity = more see-through; set to 1.0 to turn
+-- transparency off. Blur only takes effect while opacity < 1.0.
+config.window_background_opacity = 0.8
+config.macos_window_background_blur = 50
 config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
 config.scrollback_lines = 10000
 config.audible_bell = 'Disabled'
