@@ -1,0 +1,4 @@
+# herdr writes runtime state (logs + session) into its config dir; ignore it.
+# Real herdr config (if any) is still tracked.
+*.log
+session.json
