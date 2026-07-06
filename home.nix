@@ -18,6 +18,25 @@ in
 
     home.sessionVariables.EDITOR = "nvim";
 
+    # Put the nix profile bins on PATH for *every* zsh, including non-interactive
+    # non-login shells. The login/interactive init (/etc/zprofile, /etc/zshrc) is
+    # where nix-darwin normally adds these, but a `zsh -c ...` (scripts, tools like
+    # herdr launched outside a login shell) never reads those files - so the bins
+    # would be missing. home.sessionPath is written into hm-session-vars.sh, which
+    # the home-manager-managed ~/.zshenv sources on every zsh, so it covers them.
+    #
+    #   /etc/profiles/per-user/<user>/bin  -> home-manager profile (herdr lives here)
+    #   /run/current-system/sw/bin         -> nix-darwin system profile
+    #
+    # These are prepended ahead of the inherited PATH but sourced before ~/.zshenv's
+    # cargo/homebrew/pnpm setup runs, so those user tools still take precedence in
+    # interactive shells (matching current behaviour). PATH is `typeset -U`, so an
+    # already-present dir is de-duplicated rather than shadowing anything.
+    home.sessionPath = [
+        "/etc/profiles/per-user/${config.home.username}/bin"
+        "/run/current-system/sw/bin"
+    ];
+
     # Skip the home-manager options manpage: silences the nixpkgs
     # 'options.json ... without a proper context' warning and trims rebuilds.
     # (Lose `man home-configuration.nix`, which we never use.)
