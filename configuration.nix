@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
 	# Determinate Nix already manages the Nix Daemon, so nix-darwin shouldn't.
@@ -16,6 +16,17 @@
 	# Authorize sudo with Touch ID (handy for a terminal-heavy setup; works in
 	# tmux via the pam_reattach that Determinate/nix-darwin wires up).
 	security.pam.services.sudo_local.touchIdAuth = true;
+
+	# Login shells need this so nix + home-manager per-user paths land on PATH
+	# (nix-darwin installs /etc/zshrc when enabled). Companion to the zsh config
+	# in home.nix.
+	programs.zsh.enable = true;
+
+	# Fonts installed system-wide so macOS (and WezTerm) can discover them.
+	# home-manager's home.packages does NOT register fonts with macOS Core Text;
+	# nix-darwin's fonts.packages links them where the OS looks. FiraCode matches
+	# what wezterm.lua asks for ("FiraCode Nerd Font Mono").
+	fonts.packages = [ pkgs.nerd-fonts.fira-code ];
 
 	# All values below mirror this machine's live `defaults` at the time of
 	# writing, so a rebuild is idempotent rather than a surprise.
@@ -93,7 +104,6 @@
 			"ffmpeg"
 			"flac"
 			"fnm"
-			"fzf"
 			"gh"
 			"git"
 			"git-lfs"
@@ -108,20 +118,16 @@
 			"librist"
 			"libvorbis"
 			"mysql-client"
-			"neovim"
 			"ninja"
 			"ripgrep"
 			# ffmpeg needs this for ffplay; declared explicitly because brew
 			# bundle's zap cleanup doesn't follow the "sdl2" alias into its
 			# keep-set and would otherwise remove it.
 			"sdl2-compat"
-			"starship"
 			"tesseract"
 			"tmux"
 			"tree"
 			"wget"
-			"zsh-autosuggestions"
-			"zsh-syntax-highlighting"
 		];
 
 		casks = [
