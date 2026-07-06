@@ -131,7 +131,7 @@ tmux attach -t snapcaster  # right back where you were
 4. Optional: set WezTerm as your default terminal and retire iTerm2 once happy.
 
 ## Where things live
-- WezTerm: `~/dotfiles/wezterm/wezterm.lua`  → `~/.config/wezterm/wezterm.lua`
-- tmux:    `~/dotfiles/tmux/tmux.conf`       → `~/.config/tmux/tmux.conf`
+- WezTerm: `~/.dotfiles/home/.config/wezterm/` → `~/.config/wezterm/` (home-manager)
+- tmux:    `~/.dotfiles/tmux/tmux.conf`       → `~/.config/tmux/tmux.conf`
 - Neovim:  `~/.config/nvim/` (+ its own `CHEATSHEET.md`)
-- All themed from `~/dotfiles/iterm2/GitHub Dark Default.itermcolors` (the palette source).
+- All themed from `~/.dotfiles/iterm2/GitHub Dark Default.itermcolors` (the palette source).

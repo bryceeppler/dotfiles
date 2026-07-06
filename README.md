@@ -4,6 +4,10 @@ Standardized terminal setup for macOS. Source of truth for shell, prompt,
 terminal, and multiplexer configuration. Files in `$HOME` are **symlinks** back
 into this repo, so editing here = editing your live config.
 
+The repo lives at `~/git/dotfiles`, with `~/.dotfiles` as a stable symlink to it.
+Every config in `$HOME` links through `~/.dotfiles/…`, so the physical clone
+location can move without touching a single config symlink.
+
 ## Layout
 
 | Repo file | Symlinked to | Purpose |
@@ -12,7 +16,7 @@ into this repo, so editing here = editing your live config.
 | `zprofile`| `~/.zprofile`| Login shells: PATH (brew, ebcli, orbstack, ~/.local/bin). |
 | `zshrc`   | `~/.zshrc`   | Interactive: history, completion, aliases, nvm, plugins, starship. |
 | `starship.toml` | `~/.config/starship.toml` | Prompt config. |
-| `wezterm/wezterm.lua` | `~/.config/wezterm/wezterm.lua` | WezTerm terminal (primary). |
+| `home/.config/wezterm/` | `~/.config/wezterm/` (via home-manager) | WezTerm terminal (primary); GitHub Dark theme defined inline. |
 | `tmux/tmux.conf` | `~/.config/tmux/tmux.conf` | tmux multiplexer. |
 | `iterm2/com.googlecode.iterm2.plist` | (iTerm custom prefs folder) | iTerm2 settings (legacy/backup). |
 
@@ -22,23 +26,32 @@ intentionally **not** vendored here.
 ## Bootstrap on a new machine
 
 ```sh
-git clone <this-repo> ~/dotfiles
-ln -sf ~/dotfiles/zshenv   ~/.zshenv
-ln -sf ~/dotfiles/zprofile ~/.zprofile
-ln -sf ~/dotfiles/zshrc    ~/.zshrc
-mkdir -p ~/.config && ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
-mkdir -p ~/.config/wezterm && ln -sf ~/dotfiles/wezterm/wezterm.lua ~/.config/wezterm/wezterm.lua
-mkdir -p ~/.config/tmux && ln -sf ~/dotfiles/tmux/tmux.conf ~/.config/tmux/tmux.conf
+git clone <this-repo> ~/git/dotfiles
+ln -s ~/git/dotfiles ~/.dotfiles          # stable alias every config links through
+
+ln -sf ~/.dotfiles/zshenv   ~/.zshenv
+ln -sf ~/.dotfiles/zprofile ~/.zprofile
+ln -sf ~/.dotfiles/zshrc    ~/.zshrc
+
+mkdir -p ~/.config && ln -sf ~/.dotfiles/starship.toml ~/.config/starship.toml
+
+mkdir -p ~/.config/tmux && ln -sf ~/.dotfiles/tmux/tmux.conf ~/.config/tmux/tmux.conf
 ```
 
 Install the apps: `brew install --cask wezterm` and `brew install tmux`.
 
+WezTerm's config is managed by nix-darwin + home-manager (`home.nix`), which
+symlinks `~/.config/wezterm` → `~/.dotfiles/home/.config/wezterm` on
+`darwin-rebuild` — so it needs no manual link above.
+
 ## Terminal: WezTerm (primary)
 
-`wezterm/wezterm.lua` is the live config. Uses **FiraCode Nerd Font Mono** (size
-14) and the **GitHub Dark Default** palette. The exact colours were pulled from
-`iterm2/GitHub Dark Default.itermcolors` so the terminal palette is identical
-across WezTerm, iTerm2, and Neovim.
+`home/.config/wezterm/wezterm.lua` is the live config (home-manager symlinks it
+to `~/.config/wezterm`). Uses **FiraCode Nerd Font Mono** (size 14) and the
+**GitHub Dark Default** palette, defined inline as a single palette table that
+drives both the color scheme and the tab-bar chrome. The exact colours were
+pulled from `iterm2/GitHub Dark Default.itermcolors` so the terminal palette is
+identical across WezTerm, iTerm2, and Neovim.
 
 ## Multiplexer: tmux
 

@@ -1,5 +1,6 @@
 -- WezTerm configuration
--- Source of truth in ~/dotfiles, symlinked to ~/.config/wezterm/wezterm.lua
+-- Source of truth in ~/.dotfiles/home/.config/wezterm; home-manager symlinks
+-- the whole dir to ~/.config/wezterm.
 -- Theme: GitHub Dark Default (matches Neovim + the iTerm2 preset)
 
 local wezterm = require 'wezterm'
@@ -14,21 +15,46 @@ config.font = wezterm.font_with_fallback {
 config.font_size = 14.0
 
 -- ── Colors: GitHub Dark Default ────────────────────────────────────────
--- Selected as a named theme, defined in colors/GitHub Dark Default.toml
--- (auto-loaded from ~/.config/wezterm/colors/). Its palette is byte-for-byte
--- the same as Neovim's github_dark_default and the iTerm2 preset.
+-- One palette table is the single source of truth: it defines the color
+-- scheme AND the tab-bar chrome, so the two can never drift apart.
+-- Canonical origin of these values: ~/.dotfiles/iterm2/GitHub Dark Default.itermcolors
+-- (also mirrored by Neovim's github_dark_default).
+local p = {
+  bg        = '#0d1117',
+  surface   = '#161b22',
+  fg        = '#e6edf3',
+  muted     = '#8b949e',
+  selection = '#264f78',
+  ansi    = { '#484f58', '#ff7b72', '#3fb950', '#d29922', '#58a6ff', '#bc8cff', '#39c5cf', '#b1bac4' },
+  brights = { '#6e7681', '#ffa198', '#56d364', '#e3b341', '#79c0ff', '#d2a8ff', '#56d4dd', '#ffffff' },
+}
+
+-- Define the scheme inline from the palette, then select it by name.
+config.color_schemes = {
+  ['GitHub Dark Default'] = {
+    background = p.bg,
+    foreground = p.fg,
+    cursor_bg = p.fg,
+    cursor_fg = p.bg,
+    cursor_border = p.fg,
+    selection_bg = p.selection,
+    selection_fg = p.fg,
+    ansi = p.ansi,
+    brights = p.brights,
+  },
+}
 config.color_scheme = 'GitHub Dark Default'
 
--- Tab-bar styling layered on top of the scheme (tab_bar isn't part of the
--- theme file; colors here override/extend the selected color_scheme).
+-- Tab-bar chrome isn't part of a color_scheme, so it's styled here - but from
+-- the same palette so it stays in sync with the scheme.
 config.colors = {
   tab_bar = {
-    background = '#0d1117',
-    active_tab = { bg_color = '#161b22', fg_color = '#e6edf3', intensity = 'Bold' },
-    inactive_tab = { bg_color = '#0d1117', fg_color = '#8b949e' },
-    inactive_tab_hover = { bg_color = '#161b22', fg_color = '#e6edf3' },
-    new_tab = { bg_color = '#0d1117', fg_color = '#8b949e' },
-    new_tab_hover = { bg_color = '#161b22', fg_color = '#e6edf3' },
+    background = p.bg,
+    active_tab = { bg_color = p.surface, fg_color = p.fg, intensity = 'Bold' },
+    inactive_tab = { bg_color = p.bg, fg_color = p.muted },
+    inactive_tab_hover = { bg_color = p.surface, fg_color = p.fg },
+    new_tab = { bg_color = p.bg, fg_color = p.muted },
+    new_tab_hover = { bg_color = p.surface, fg_color = p.fg },
   },
 }
 

@@ -1,4 +1,4 @@
-# ~/.zshrc — interactive shell configuration. Managed in ~/dotfiles.
+# ~/.zshrc — interactive shell configuration. Managed in ~/.dotfiles.
 
 # --- HISTORY ---
 HISTSIZE=10000
@@ -46,7 +46,7 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 # --- BUN ---
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# --- PYTHON (uv owns interpreters, venvs & tools — see ~/dotfiles/TOOLCHAIN.md) ---
+# --- PYTHON (uv owns interpreters, venvs & tools — see ~/.dotfiles/TOOLCHAIN.md) ---
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 

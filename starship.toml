@@ -1,5 +1,5 @@
 # ~/.config/starship.toml — clean two-line prompt: frame + Nerd Font icons.
-# Managed in ~/dotfiles. ANSI color names → the prompt follows the active
+# Managed in ~/.dotfiles. ANSI color names → the prompt follows the active
 # iTerm2 color preset (GitHub Dark right now).
 #
 # Layout:
