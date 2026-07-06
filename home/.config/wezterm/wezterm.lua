@@ -44,7 +44,8 @@ config.color_schemes = {
   },
 }
 -- config.color_scheme = 'GitHub Dark Default'
-config.color_scheme = 'rose-pine-moon'
+-- config.color_scheme = 'rose-pine-moon'
+config.color_scheme = 'GitHub Dark'
 
 -- Tab-bar chrome isn't part of a color_scheme, so it's styled here - but from
 -- the same palette so it stays in sync with the scheme.
