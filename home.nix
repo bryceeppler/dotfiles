@@ -11,13 +11,22 @@ in
         packages = with pkgs; [
             # User-space tools we use
             neovim
+            herdr   # from the herdr overlay (flake input)
         ];
     };
 
     home.sessionVariables.EDITOR = "nvim";
 
-    # Edit-in-place: the real file stays in my repo... ~/.config just points here.
+    # Skip the home-manager options manpage: silences the nixpkgs
+    # 'options.json ... without a proper context' warning and trims rebuilds.
+    # (Lose `man home-configuration.nix`, which we never use.)
+    manual.manpages.enable = false;
+
+    # Edit-in-place: the real files stay in my repo... ~/.config just points here.
     home.file.".config/wezterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/wezterm";
+    home.file.".config/tmux".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/tmux";
+    home.file.".config/herdr".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
+    home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
 
     # ── Zsh ────────────────────────────────────────────────────────────────
     # Declarative zsh, replacing the hand-symlinked zshrc/zshenv/zprofile.

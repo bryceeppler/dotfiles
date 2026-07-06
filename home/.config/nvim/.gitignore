@@ -1,0 +1,11 @@
+tags
+test.sh
+.luarc.json
+nvim
+
+spell/
+
+# Vendored into dotfiles: track nvim-pack-lock.json so plugin versions are
+# pinned/reproducible (per :help vim.pack-lockfile).
+
+.DS_Store

@@ -17,6 +17,24 @@
         "type": "github"
       }
     },
+    "herdr": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1783302861,
+        "narHash": "sha256-CqcI1wi60gDrxJ+QIKEG1PqI3+9g2CHEXOx0FzmUMik=",
+        "owner": "ogulcancelik",
+        "repo": "herdr",
+        "rev": "d36a6ded3bbc623a3fcad3c6e45b7b22ae9b6267",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ogulcancelik",
+        "repo": "herdr",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -79,11 +97,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1783204497,
-        "narHash": "sha256-ShmTfoa7D+E+yaa7HYX7oaePuq2cT1CpiTnFjhFXUTU=",
+        "lastModified": 1779357205,
+        "narHash": "sha256-cCO8aTqss5x9Ky8GWkpY0Hy5fyTZEbtifSUV8QjSzic=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "cbe2bee06f376d8b916e7c8bda33180ba228b3dc",
+        "rev": "f83fc3c307e74bc5fd5adb7eb6b8b13ffd2a36e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1783284305,
+        "narHash": "sha256-fKo9+KWNBiVrfG8HNx9JCMauF6o5YghH7PIQll+yryI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "846e84d25c3d00c71a4ff8ffedbf08572eb7aebb",
         "type": "github"
       },
       "original": {
@@ -95,10 +129,11 @@
     },
     "root": {
       "inputs": {
+        "herdr": "herdr",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },

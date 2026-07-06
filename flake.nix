@@ -13,15 +13,21 @@
     # Declarative Homebrew: nix-homebrew owns the Homebrew installation and the
     # homebrew module in configuration.nix declares exactly what may exist.
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    # herdr terminal workspace tool; ships a nixpkgs overlay -> pkgs.herdr.
+    herdr.url = "github:ogulcancelik/herdr";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }: {
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, herdr }: {
     darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
       modules = [
         ./configuration.nix
         nix-homebrew.darwinModules.nix-homebrew
         home-manager.darwinModules.home-manager
         {
+          # Make pkgs.herdr available everywhere (herdr ships this overlay);
+          # with useGlobalPkgs, home-manager sees it too.
+          nixpkgs.overlays = [ herdr.overlays.default ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           # Back up any pre-existing file HM would replace (e.g. a manual

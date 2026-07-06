@@ -91,9 +91,10 @@
 			extraFlags = [ "--force" ];
 		};
 
-		# No taps required: every formula below is from homebrew/core and every
-		# cask from homebrew/cask. Add "owner/repo" entries here if that changes.
-		taps = [ ];
+		# The ngrok cask is installed from the ngrok/ngrok tap, so keep it tapped
+		# (zap would otherwise refuse to untap it). Everything else is
+		# homebrew/core + homebrew/cask.
+		taps = [ "ngrok/ngrok" ];
 
 		brews = [
 			"btop"
@@ -120,10 +121,13 @@
 			"mysql-client"
 			"ninja"
 			"ripgrep"
-			# ffmpeg needs this for ffplay; declared explicitly because brew
-			# bundle's zap cleanup doesn't follow the "sdl2" alias into its
-			# keep-set and would otherwise remove it.
+			# ffmpeg needs these for ffplay. Both are declared explicitly:
+			# `brew bundle --force-cleanup` (Homebrew 6.0.1) builds its keep-set
+			# from Brewfile entries only, so it crashes with
+			# 'key not found: "sdl3"' unless sdl3 (sdl2-compat's own dependency)
+			# is listed here too; sdl2-compat also covers the "sdl2" alias.
 			"sdl2-compat"
+			"sdl3"
 			"tesseract"
 			"tmux"
 			"tree"
