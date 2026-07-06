@@ -91,9 +91,9 @@
 			extraFlags = [ "--force" ];
 		};
 
-		# Third-party taps we keep: ngrok cask + stripe CLI live in these, and
-		# zap refuses to untap a tap that still has installed packages.
-		taps = [ "ngrok/ngrok" "stripe/stripe-cli" ];
+		# ngrok's cask comes from the ngrok/ngrok tap, so keep it tapped
+		# (zap refuses to untap a tap that still has installed packages).
+		taps = [ "ngrok/ngrok" ];
 
 		brews = [
 			"btop"
@@ -127,7 +127,6 @@
 			# is listed here too; sdl2-compat also covers the "sdl2" alias.
 			"sdl2-compat"
 			"sdl3"
-			"stripe/stripe-cli/stripe"   # Stripe CLI (from the stripe/stripe-cli tap)
 			"tesseract"
 			"tmux"
 			"tree"

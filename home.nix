@@ -11,7 +11,8 @@ in
         packages = with pkgs; [
             # User-space tools we use
             neovim
-            herdr   # from the herdr overlay (flake input)
+            herdr        # from the herdr overlay (flake input)
+            stripe-cli   # was a third-party brew tap; nixpkgs is cleaner + newer
         ];
     };
 
