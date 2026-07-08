@@ -134,6 +134,7 @@
 		];
 
 		casks = [
+			"google-chrome"
 			"hammerspoon"
 			"jordanbaird-ice"
 			"ngrok"

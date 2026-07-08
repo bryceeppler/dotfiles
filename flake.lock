@@ -22,11 +22,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1783302861,
-        "narHash": "sha256-CqcI1wi60gDrxJ+QIKEG1PqI3+9g2CHEXOx0FzmUMik=",
+        "lastModified": 1783468284,
+        "narHash": "sha256-no8aODMs+tYEnEShJPHKap2imToiA++joPFL+o/ZAmg=",
         "owner": "ogulcancelik",
         "repo": "herdr",
-        "rev": "d36a6ded3bbc623a3fcad3c6e45b7b22ae9b6267",
+        "rev": "77f0339c3cd387c4ca3f4f240ff8b88065d66a22",
         "type": "github"
       },
       "original": {
