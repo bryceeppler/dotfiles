@@ -1,7 +1,7 @@
 -- WezTerm configuration
 -- Source of truth in ~/.dotfiles/home/.config/wezterm; home-manager symlinks
 -- the whole dir to ~/.config/wezterm.
--- Theme: GitHub Dark Default (matches Neovim + the iTerm2 preset)
+-- Theme: Ayu Dark
 
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
@@ -14,41 +14,19 @@ config.font = wezterm.font_with_fallback {
 }
 config.font_size = 14.0
 
--- ── Colors: GitHub Dark Default ────────────────────────────────────────
--- One palette table is the single source of truth: it defines the color
--- scheme AND the tab-bar chrome, so the two can never drift apart.
--- Canonical origin of these values: ~/.dotfiles/iterm2/GitHub Dark Default.itermcolors
--- (also mirrored by Neovim's github_dark_default).
+-- ── Colors: Ayu Dark ──────────────────────────────────────────────────
+-- WezTerm provides the terminal palette. These matching Ayu UI colors keep
+-- the tab bar visually consistent with it.
 local p = {
-  bg        = '#0d1117',
-  surface   = '#161b22',
-  fg        = '#e6edf3',
-  muted     = '#8b949e',
-  selection = '#264f78',
-  ansi    = { '#484f58', '#ff7b72', '#3fb950', '#d29922', '#58a6ff', '#bc8cff', '#39c5cf', '#b1bac4' },
-  brights = { '#6e7681', '#ffa198', '#56d364', '#e3b341', '#79c0ff', '#d2a8ff', '#56d4dd', '#ffffff' },
+  bg = '#0a0e14',
+  surface = '#14191f',
+  fg = '#b3b1ad',
+  muted = '#7a838c',
 }
 
--- Define the scheme inline from the palette, then select it by name.
-config.color_schemes = {
-  ['GitHub Dark Default'] = {
-    background = p.bg,
-    foreground = p.fg,
-    cursor_bg = p.fg,
-    cursor_fg = p.bg,
-    cursor_border = p.fg,
-    selection_bg = p.selection,
-    selection_fg = p.fg,
-    ansi = p.ansi,
-    brights = p.brights,
-  },
-}
--- config.color_scheme = 'GitHub Dark Default'
--- config.color_scheme = 'rose-pine-moon'
-config.color_scheme = 'GitHub Dark'
+config.color_scheme = 'Ayu Dark (Gogh)'
 
--- Tab-bar chrome isn't part of a color_scheme, so it's styled here - but from
--- the same palette so it stays in sync with the scheme.
+-- Tab-bar chrome is not part of a color scheme, so style it separately.
 config.colors = {
   tab_bar = {
     background = p.bg,
