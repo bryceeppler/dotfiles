@@ -2,6 +2,9 @@
 
 let
     dotfiles = "${config.home.homeDirectory}/.dotfiles";
+    preferDirectInstallPath = ''
+        path=("$HOME/.local/bin" ''${path:#"$HOME/.local/bin"})
+    '';
 in
 {
     home = {
@@ -11,7 +14,6 @@ in
         packages = with pkgs; [
             # User-space tools we use
             neovim
-            herdr        # from the herdr overlay (flake input)
             stripe-cli   # was a third-party brew tap; nixpkgs is cleaner + newer
         ];
     };
@@ -20,12 +22,13 @@ in
 
     # Put the nix profile bins on PATH for *every* zsh, including non-interactive
     # non-login shells. The login/interactive init (/etc/zprofile, /etc/zshrc) is
-    # where nix-darwin normally adds these, but a `zsh -c ...` (scripts, tools like
-    # herdr launched outside a login shell) never reads those files - so the bins
-    # would be missing. home.sessionPath is written into hm-session-vars.sh, which
+    # where nix-darwin normally adds these, but a `zsh -c ...` launched outside a
+    # login shell never reads those files - so the bins would be missing.
+    # home.sessionPath is written into hm-session-vars.sh, which
     # the home-manager-managed ~/.zshenv sources on every zsh, so it covers them.
     #
-    #   /etc/profiles/per-user/<user>/bin  -> home-manager profile (herdr lives here)
+    #   ~/.local/bin                           -> directly installed CLIs (Herdr)
+    #   /etc/profiles/per-user/<user>/bin  -> home-manager profile
     #   /run/current-system/sw/bin         -> nix-darwin system profile
     #
     # These are prepended ahead of the inherited PATH but sourced before ~/.zshenv's
@@ -33,6 +36,7 @@ in
     # interactive shells (matching current behaviour). PATH is `typeset -U`, so an
     # already-present dir is de-duplicated rather than shadowing anything.
     home.sessionPath = [
+        "${config.home.homeDirectory}/.local/bin"
         "/etc/profiles/per-user/${config.home.username}/bin"
         "/run/current-system/sw/bin"
     ];
@@ -87,6 +91,8 @@ in
         # ~/.zshenv - runs for every zsh; keep minimal.
         envExtra = ''
             . "$HOME/.cargo/env"
+            # Direct installers own these tools, so keep them ahead of package managers.
+            ${preferDirectInstallPath}
         '';
 
         # ~/.zprofile - login shells: PATH / environment setup.
@@ -120,6 +126,9 @@ in
 
             # libpq (postgres client tools)
             export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+            # Reassert direct-install precedence after interactive PATH setup.
+            ${preferDirectInstallPath}
         '';
     };
 

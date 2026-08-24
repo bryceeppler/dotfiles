@@ -12,7 +12,7 @@ pinned per project. One source of truth per tool — no more drift.
 | npm | bundled with fnm's Node | |
 | pnpm / yarn | **corepack** | shims live in fnm's node bin; pin per project via the `packageManager` field |
 | bun, deno | **Homebrew** | upgrade with `brew upgrade` — do **not** run `bun upgrade` (that's what caused version drift before) |
-| claude, codex | native installers → `~/.local/bin` | self-updating, Node-independent |
+| claude, codex, herdr | native installers → `~/.local/bin` | self-updating, Node-independent |
 | railway | npm global under fnm | `npm i -g @railway/cli` |
 | vercel, wrangler, @shopify/cli, @nestjs/cli | **pnpm global** (`~/Library/pnpm`) | `pnpm add -g` / `pnpm update -g` |
 | gh, stripe, heroku, twilio, pscale, … | **Homebrew** | |
@@ -76,13 +76,14 @@ pnpm update -g
 
 # Self-updating standalones
 claude update    # codex updates itself on launch
+herdr update
 ```
 
 ## Health check
 
 ```sh
 # Each of these should resolve to ONE place (fnm / ~/.local/bin / pnpm / brew):
-for c in node npm pnpm yarn bun deno claude codex railway vercel wrangler shopify; do
+for c in node npm pnpm yarn bun deno claude codex herdr railway vercel wrangler shopify; do
   printf '%-9s %s\n' "$c" "$(command -v "$c")"
 done
 which -a node            # should show only the fnm shim

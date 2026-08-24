@@ -2,13 +2,13 @@
 
 A macOS environment managed declaratively with **nix-darwin + home-manager + Homebrew**.
 The repo lives at `~/git/dotfiles`, aliased to `~/.dotfiles`.
-One command applies everything - system settings, packages, and config: `~/.dotfiles/rebuild.sh`.
+One command applies the Nix-managed system settings, packages, and config: `~/.dotfiles/rebuild.sh`.
 
 ## How it's organized
 
 | File | Layer | Owns |
 |---|---|---|
-| `flake.nix` / `flake.lock` | inputs | nixpkgs, nix-darwin, home-manager, nix-homebrew, herdr; the `mac` config |
+| `flake.nix` / `flake.lock` | inputs | nixpkgs, nix-darwin, home-manager, nix-homebrew; the `mac` config |
 | `configuration.nix` | system (nix-darwin) | macOS defaults, Touch ID sudo, fonts, additive declarative Homebrew |
 | `home.nix` | user (home-manager) | nix packages, zsh/fzf/starship, edit-in-place config links |
 | `rebuild.sh` | apply | refreshes the `~/.dotfiles` alias, runs `darwin-rebuild switch` |
@@ -24,6 +24,10 @@ One command applies everything - system settings, packages, and config: `~/.dotf
 3. Apply everything:
    ```sh
    ~/.dotfiles/rebuild.sh
+   ```
+4. Install Herdr directly so its built-in updater owns the executable:
+   ```sh
+   curl -fsSL https://herdr.dev/install.sh | sh
    ```
 
 `rebuild.sh` runs `darwin-rebuild switch --flake ~/.dotfiles#mac`.
@@ -42,10 +46,11 @@ The first run also enables Touch ID for `sudo` and adopts the existing Homebrew 
   Use explicit `brew` commands for updates and removals.
 
 **User - `home.nix` (home-manager)**
-- Nix packages: `neovim`, `herdr`, `stripe-cli`, …
+- Nix packages: `neovim`, `stripe-cli`, …
 - `programs.zsh` generates `~/.zshrc` / `.zshenv` / `.zprofile` (history, aliases, completion, autosuggestions, syntax highlighting).
 - `programs.fzf` and `programs.starship` (starship reads `starship.toml`).
 - Edit-in-place config symlinks (below).
+- Herdr is installed directly in `~/.local/bin` and updated with `herdr update`, independently of Nix rebuilds.
 
 ## Editing configs
 
