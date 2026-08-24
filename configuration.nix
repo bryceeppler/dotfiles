@@ -78,21 +78,20 @@
 		autoMigrate = true;
 	};
 
-	# Declarative Homebrew. This list is the single source of truth: with
-	# cleanup = "zap" below, anything installed via brew that is NOT listed
-	# here is uninstalled (and its leftover files zapped) on every rebuild.
+	# Additive declarative Homebrew. Rebuilds install anything listed here that
+	# is missing, but leave existing and undeclared packages alone. Updates stay
+	# under explicit `brew` commands or each application's self-updater.
 	# Dependencies of listed packages are kept automatically - only declare
 	# top-level formulae (brew leaves) and casks.
 	homebrew = {
 		enable = true;
 		onActivation = {
-			cleanup = "zap";          # remove anything not listed here
-			autoUpdate = true;
-			extraFlags = [ "--force" ];
+			cleanup = "none";
+			autoUpdate = false;
+			upgrade = false;
 		};
 
-		# ngrok's cask comes from the ngrok/ngrok tap, so keep it tapped
-		# (zap refuses to untap a tap that still has installed packages).
+		# ngrok's cask comes from the ngrok/ngrok tap, so keep it available.
 		taps = [ "ngrok/ngrok" ];
 
 		brews = [
@@ -120,13 +119,6 @@
 			"mysql-client"
 			"ninja"
 			"ripgrep"
-			# ffmpeg needs these for ffplay. Both are declared explicitly:
-			# `brew bundle --force-cleanup` (Homebrew 6.0.1) builds its keep-set
-			# from Brewfile entries only, so it crashes with
-			# 'key not found: "sdl3"' unless sdl3 (sdl2-compat's own dependency)
-			# is listed here too; sdl2-compat also covers the "sdl2" alias.
-			"sdl2-compat"
-			"sdl3"
 			"tesseract"
 			"tmux"
 			"tree"

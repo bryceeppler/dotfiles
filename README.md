@@ -9,7 +9,7 @@ One command applies everything - system settings, packages, and config: `~/.dotf
 | File | Layer | Owns |
 |---|---|---|
 | `flake.nix` / `flake.lock` | inputs | nixpkgs, nix-darwin, home-manager, nix-homebrew, herdr; the `mac` config |
-| `configuration.nix` | system (nix-darwin) | macOS defaults, Touch ID sudo, fonts, declarative Homebrew |
+| `configuration.nix` | system (nix-darwin) | macOS defaults, Touch ID sudo, fonts, additive declarative Homebrew |
 | `home.nix` | user (home-manager) | nix packages, zsh/fzf/starship, edit-in-place config links |
 | `rebuild.sh` | apply | refreshes the `~/.dotfiles` alias, runs `darwin-rebuild switch` |
 
@@ -36,9 +36,10 @@ The first run also enables Touch ID for `sudo` and adopts the existing Homebrew 
 - macOS defaults: dark mode, fast key repeat, Dock, Finder, a Quick Note hot corner, natural-scroll off, and more.
 - Touch ID for `sudo`.
 - FiraCode Nerd Font via `fonts.packages` (the way that actually registers a font with macOS).
-- **Homebrew, declaratively** via nix-homebrew with `cleanup = "zap"`.
-  The `brews`/`casks` lists are the single source of truth: anything installed that isn't listed gets removed on the next rebuild.
-  Add or remove CLIs and GUI apps by editing those lists.
+- **Homebrew, additively** via nix-homebrew.
+  The `brews` and `casks` lists define a baseline that rebuilds install when missing.
+  Rebuilds do not upgrade existing packages or remove undeclared ones, so applications can use their own self-updaters and ad hoc Homebrew installs remain intact.
+  Use explicit `brew` commands for updates and removals.
 
 **User - `home.nix` (home-manager)**
 - Nix packages: `neovim`, `herdr`, `stripe-cli`, …

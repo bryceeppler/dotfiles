@@ -11,7 +11,7 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # Declarative Homebrew: nix-homebrew owns the Homebrew installation and the
-    # homebrew module in configuration.nix declares exactly what may exist.
+    # homebrew module in configuration.nix declares a baseline package set.
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     # herdr terminal workspace tool; ships a nixpkgs overlay -> pkgs.herdr.
