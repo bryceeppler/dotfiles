@@ -1,6 +1,6 @@
 # Terminal cheat sheet — WezTerm + tmux + Neovim
 
-WezTerm uses **Ayu Dark**, while tmux and Neovim use **GitHub Dark Default**.
+WezTerm, tmux, and Neovim all use **GitHub Dark Default**.
 Neovim's own keymap sheet lives at `~/.config/nvim/CHEATSHEET.md`.
 
 ---
@@ -134,5 +134,5 @@ tmux attach -t snapcaster  # right back where you were
 - WezTerm: `~/.dotfiles/home/.config/wezterm/` → `~/.config/wezterm/` (home-manager)
 - tmux:    `~/.dotfiles/tmux/tmux.conf`       → `~/.config/tmux/tmux.conf`
 - Neovim:  `~/.config/nvim/` (+ its own `CHEATSHEET.md`)
-- WezTerm uses its bundled `Ayu Dark (Gogh)` scheme.
-- tmux and Neovim use `~/.dotfiles/iterm2/GitHub Dark Default.itermcolors` as their palette source.
+- WezTerm, tmux, and Neovim all use `~/.dotfiles/iterm2/GitHub Dark Default.itermcolors` as their palette source.
+  WezTerm spells the palette out in `wezterm.lua` rather than using a bundled scheme, so it matches exactly.
