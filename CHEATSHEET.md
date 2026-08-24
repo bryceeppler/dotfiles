@@ -1,6 +1,7 @@
 # Terminal cheat sheet — WezTerm + tmux + Neovim
 
-WezTerm, tmux, and Neovim all use **GitHub Dark Default**.
+WezTerm and Neovim both use **GitHub Dark Default**.
+tmux has no theme of its own: it follows the terminal's ANSI palette, so it re-themes itself whenever WezTerm does.
 Neovim's own keymap sheet lives at `~/.config/nvim/CHEATSHEET.md`.
 
 ---
@@ -125,14 +126,15 @@ tmux attach -t snapcaster  # right back where you were
 ## First-time setup checklist
 
 1. **Open WezTerm** (Spotlight → "WezTerm"). It's already themed.
-2. In WezTerm, run `tmux` — you should see the GitHub-dark status bar at the bottom.
+2. In WezTerm, run `tmux` - you should see the status bar at the bottom, tinted from WezTerm's own palette.
 3. Open Neovim (`nvim`) inside tmux and confirm colors look right (truecolor is
    wired through tmux, so `github_dark_default` renders correctly).
 4. Optional: set WezTerm as your default terminal and retire iTerm2 once happy.
 
 ## Where things live
 - WezTerm: `~/.dotfiles/home/.config/wezterm/` → `~/.config/wezterm/` (home-manager)
-- tmux:    `~/.dotfiles/tmux/tmux.conf`       → `~/.config/tmux/tmux.conf`
+- tmux:    `~/.dotfiles/home/.config/tmux/`   → `~/.config/tmux/` (home-manager)
 - Neovim:  `~/.config/nvim/` (+ its own `CHEATSHEET.md`)
-- WezTerm, tmux, and Neovim all use `~/.dotfiles/iterm2/GitHub Dark Default.itermcolors` as their palette source.
+- WezTerm and Neovim use `~/.dotfiles/iterm2/GitHub Dark Default.itermcolors` as their palette source.
   WezTerm spells the palette out in `wezterm.lua` rather than using a bundled scheme, so it matches exactly.
+  tmux is not in that list on purpose: it reads no palette, and takes its colors from whatever ANSI colors the terminal defines.
