@@ -1,0 +1,25 @@
+# WezTerm ships no built-in "GitHub Dark Default". `GitHub Dark` is the closest
+# of its 1079 schemes and is not the palette wezterm.lua hand-authors today:
+# background #101216 vs #0d1117, foreground #8b949e vs #e6edf3. Migrating
+# wezterm.lua onto this will shift the terminal's colors slightly.
+# ADR-0002 accepts that: a Theme pairs each ecosystem's native theme, and the
+# two halves are maintained by different people and may diverge.
+
+display = "GitHub Dark Default"
+variant = "dark"
+
+[wezterm]
+scheme = "GitHub Dark"
+
+[nvim]
+plugin      = "projekt0n/github-nvim-theme"
+colorscheme = "github_dark_default"
+setup = '''
+require('github-theme').setup {
+  options = {
+    styles = {
+      comments = 'NONE', -- Disable italics in comments
+    },
+  },
+}
+'''

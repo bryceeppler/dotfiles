@@ -1,0 +1,13 @@
+# The Surfaces that have to be named on this machine, and which two Themes are
+# nominated as the Pairing. A Theme says what to show; this says where to put it.
+# Only WezTerm needs naming: a running Neovim is found by its socket, not by a
+# path configured here.
+
+[wezterm]
+config_file = "~/.config/wezterm/wezterm.lua"
+
+# The halves `theme follow` resolves between. Nominated explicitly, never
+# inferred from the Themes on disk.
+[pairing]
+light = "catppuccin-latte"
+dark  = "github-dark-default"

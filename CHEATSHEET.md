@@ -135,6 +135,7 @@ tmux attach -t snapcaster  # right back where you were
 - WezTerm: `~/.dotfiles/home/.config/wezterm/` → `~/.config/wezterm/` (home-manager)
 - tmux:    `~/.dotfiles/home/.config/tmux/`   → `~/.config/tmux/` (home-manager)
 - Neovim:  `~/.config/nvim/` (+ its own `CHEATSHEET.md`)
+- Themes:  `~/.dotfiles/home/.config/theme-switcher/` → `~/.config/theme-switcher/` (home-manager)
 - WezTerm and Neovim use `~/.dotfiles/iterm2/GitHub Dark Default.itermcolors` as their palette source.
   WezTerm spells the palette out in `wezterm.lua` rather than using a bundled scheme, so it matches exactly.
   tmux is not in that list on purpose: it reads no palette, and takes its colors from whatever ANSI colors the terminal defines.

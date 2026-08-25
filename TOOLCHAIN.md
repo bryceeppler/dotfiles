@@ -16,6 +16,7 @@ pinned per project. One source of truth per tool — no more drift.
 | railway | npm global under fnm | `npm i -g @railway/cli` |
 | vercel, wrangler, @shopify/cli, @nestjs/cli | **pnpm global** (`~/Library/pnpm`) | `pnpm add -g` / `pnpm update -g` |
 | gh, stripe, heroku, twilio, pscale, … | **Homebrew** | |
+| theme | **cargo** | built from `~/git/bryces-theme-switcher`; `cargo install --path .` puts it in `~/.cargo/bin` |
 
 ## Python (uv)
 
@@ -52,6 +53,7 @@ want classic `pip` in a venv, create it with `uv venv --seed`.
 2. Standalone app with its own self-updating installer? → use that (lands in `~/.local/bin`).
 3. Maintained brew formula and not a JS lib? → `brew install`.
 4. JS CLI used across many projects? → `pnpm add -g`.
+5. A Rust tool I maintain in a local repo? → `cargo install --path .` (lands in `~/.cargo/bin`).
 
 **Never:** `npm i -g` into a brew Node, a nodejs.org `.pkg`, or a second version manager.
 
@@ -77,13 +79,16 @@ pnpm update -g
 # Self-updating standalones
 claude update    # codex updates itself on launch
 herdr update
+
+# Cargo-built tools: rebuild from the repo, since there is no updater
+cargo install --path ~/git/bryces-theme-switcher   # theme
 ```
 
 ## Health check
 
 ```sh
-# Each of these should resolve to ONE place (fnm / ~/.local/bin / pnpm / brew):
-for c in node npm pnpm yarn bun deno claude codex herdr railway vercel wrangler shopify; do
+# Each of these should resolve to ONE place (fnm / ~/.local/bin / pnpm / brew / cargo):
+for c in node npm pnpm yarn bun deno claude codex herdr railway vercel wrangler shopify theme; do
   printf '%-9s %s\n' "$c" "$(command -v "$c")"
 done
 which -a node            # should show only the fnm shim

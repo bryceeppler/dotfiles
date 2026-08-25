@@ -1,0 +1,9 @@
+display = "Ayu Dark"
+variant = "dark"
+
+[wezterm]
+scheme = "Ayu Dark (Gogh)"
+
+[nvim]
+plugin      = "Shatur/neovim-ayu"
+colorscheme = "ayu-dark"

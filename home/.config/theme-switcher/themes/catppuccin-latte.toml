@@ -1,0 +1,9 @@
+display = "Catppuccin Latte"
+variant = "light"
+
+[wezterm]
+scheme = "Catppuccin Latte"
+
+[nvim]
+plugin      = "catppuccin/nvim"
+colorscheme = "catppuccin-latte"
