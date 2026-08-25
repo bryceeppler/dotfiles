@@ -199,7 +199,7 @@ config.tab_bar_at_bottom = false
 config.window_decorations = 'RESIZE'
 -- Frosted-glass background. Lower opacity = more see-through; set to 1.0 to turn
 -- transparency off. Blur only takes effect while opacity < 1.0.
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.9
 config.macos_window_background_blur = 50
 config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
 config.scrollback_lines = 10000
