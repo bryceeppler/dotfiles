@@ -2,3 +2,10 @@
 # Real herdr config (if any) is still tracked.
 *.log
 session.json
+
+# The rest of what herdr writes here: its plugin registry, which records
+# absolute paths to checkouts a fresh machine will not have, and its cached
+# release notes.
+.plugins.lock
+plugins.json
+release-notes.json
