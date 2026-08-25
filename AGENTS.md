@@ -23,3 +23,14 @@ Use `default` plus the `dim` attribute instead.
 That dims the terminal's own foreground, so it tracks the palette, and a terminal that ignores `dim` degrades to plain readable text rather than to invisible text.
 The same argument makes `reverse` the right way to draw a coloured pill: it paints the label in the terminal's background colour, which is the one colour guaranteed to contrast with the pill under both light and dark schemes.
 `fg=colour0` or `fg=colour15` each work under only one of the two.
+
+## Agent CLI themes: leave them following the terminal
+
+Claude Code and Codex are Followers of the theme switcher, so neither carries a theme of its own.
+Claude Code gets there with `"theme": "auto"` in `home/.claude/settings.json`.
+Codex gets there by having **no** `tui.theme` in `~/.codex/config.toml`, because setting that key at all disables its adaptive default.
+Don't add one to either, and don't chase the lag after a theme switch: the switcher's own README explains why they only pick their theme up at the next session.
+
+`home/.claude/settings.json` is linked as a single file rather than by linking `~/.claude`, because everything else in that directory is runtime state (history, projects, credentials).
+Claude Code rewrites the file in place through the symlink instead of replacing it, which is what makes the link survive its own writes - verified against `claude plugin marketplace add` with a symlinked `settings.json`.
+Incidental writes from inside a session (survey timestamps, plugin state) therefore land in the repo as a diff; that is the cost of tracking the file at all, not a sign anything is wrong.

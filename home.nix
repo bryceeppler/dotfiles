@@ -53,6 +53,12 @@ in
     home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
     home.file.".config/theme-switcher".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/theme-switcher";
 
+    # Claude Code's user settings, which carry the `"theme": "auto"` that makes
+    # it a Follower of the theme switcher - see AGENTS.md. Only the one file is
+    # linked: the rest of ~/.claude is runtime state (history, projects,
+    # credentials).
+    home.file.".claude/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
+
     # ── Zsh ────────────────────────────────────────────────────────────────
     # Declarative zsh, replacing the hand-symlinked zshrc/zshenv/zprofile.
     # home-manager generates ~/.zshrc etc. and sources the plugins from nixpkgs,
