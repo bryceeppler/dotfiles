@@ -1,0 +1,13 @@
+# Both Variants are the one colorscheme `modus`, which reads `'background'`
+# rather than being a colorscheme per Variant; `modus_vivendi` would work but
+# would not match `vim.g.colors_name`. See everforest-dark.toml.
+
+display = "Modus Vivendi"
+variant = "dark"
+
+[wezterm]
+scheme = "Modus-Vivendi"
+
+[nvim]
+plugin      = "miikanissi/modus-themes.nvim"
+colorscheme = "modus"

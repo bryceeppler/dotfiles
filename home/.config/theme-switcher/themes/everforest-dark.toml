@@ -1,0 +1,15 @@
+# Both Variants are the one colorscheme `everforest`, which reads
+# `'background'` rather than being a colorscheme per Variant. Naming that one
+# rather than a variant-specific name is what keeps `vim.g.colors_name` equal
+# to the colorscheme this manifest asks for, which is what the generated
+# `system` Lua compares against before deciding a half is already showing.
+
+display = "Everforest Dark"
+variant = "dark"
+
+[wezterm]
+scheme = "Everforest Dark (Gogh)"
+
+[nvim]
+plugin      = "neanias/everforest-nvim"
+colorscheme = "everforest"

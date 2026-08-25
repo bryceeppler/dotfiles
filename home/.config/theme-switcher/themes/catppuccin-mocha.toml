@@ -1,0 +1,9 @@
+display = "Catppuccin Mocha"
+variant = "dark"
+
+[wezterm]
+scheme = "Catppuccin Mocha"
+
+[nvim]
+plugin      = "catppuccin/nvim"
+colorscheme = "catppuccin-mocha"

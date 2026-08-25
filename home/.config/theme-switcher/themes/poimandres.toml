@@ -1,0 +1,9 @@
+display = "Poimandres"
+variant = "dark"
+
+[wezterm]
+scheme = "Poimandres"
+
+[nvim]
+plugin      = "olivercederborg/poimandres.nvim"
+colorscheme = "poimandres"

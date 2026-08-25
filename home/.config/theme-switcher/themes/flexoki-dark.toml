@@ -1,0 +1,19 @@
+# Both Variants are the one colorscheme `flexoki`, which reads `'background'`
+# rather than being a colorscheme per Variant; `flexoki-dark` would work but
+# would not match `vim.g.colors_name`. See everforest-dark.toml.
+
+# The two halves also disagree on the background by one palette entry:
+# WezTerm's `flexoki-dark` uses base-950 #1c1b1a, while flexoki-neovim uses
+# black #100f0f. Both are Flexoki's own colors, so neither half is wrong; they
+# are maintained by different people and have picked differently, which is what
+# ADR-0002 accepts. Flexoki Light has no such split: both halves are #fffcf0.
+
+display = "Flexoki Dark"
+variant = "dark"
+
+[wezterm]
+scheme = "flexoki-dark"
+
+[nvim]
+plugin      = "kepano/flexoki-neovim"
+colorscheme = "flexoki"

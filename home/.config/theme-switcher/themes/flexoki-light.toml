@@ -1,0 +1,9 @@
+display = "Flexoki Light"
+variant = "light"
+
+[wezterm]
+scheme = "flexoki-light"
+
+[nvim]
+plugin      = "kepano/flexoki-neovim"
+colorscheme = "flexoki"

@@ -1,0 +1,9 @@
+display = "Modus Operandi"
+variant = "light"
+
+[wezterm]
+scheme = "Modus-Operandi"
+
+[nvim]
+plugin      = "miikanissi/modus-themes.nvim"
+colorscheme = "modus"

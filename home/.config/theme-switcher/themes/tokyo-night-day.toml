@@ -1,0 +1,9 @@
+display = "Tokyo Night Day"
+variant = "light"
+
+[wezterm]
+scheme = "Tokyo Night Day"
+
+[nvim]
+plugin      = "folke/tokyonight.nvim"
+colorscheme = "tokyonight-day"

@@ -1,0 +1,9 @@
+display = "Everforest Light"
+variant = "light"
+
+[wezterm]
+scheme = "Everforest Light (Gogh)"
+
+[nvim]
+plugin      = "neanias/everforest-nvim"
+colorscheme = "everforest"
