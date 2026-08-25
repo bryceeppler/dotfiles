@@ -377,24 +377,53 @@ do
   }
 
   -- [[ Colorscheme ]]
-  -- You can easily change to a different colorscheme.
-  -- Change the name of the colorscheme plugin below, and then
-  -- change the command under that to load whatever the name of that colorscheme is.
+  -- No colorscheme is named here and no colorscheme plugin is declared here. The
+  -- theme switcher decides both: `theme <name>` rewrites the generated Lua loaded
+  -- below, which declares every Theme's plugin and applies the Active Theme.
   --
-  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  vim.pack.add { gh 'projekt0n/github-nvim-theme' }
-  require('github-theme').setup {
-    options = {
-      styles = {
-        comments = 'NONE', -- Disable italics in comments
-      },
-    },
-  }
+  -- Under a Pairing that file also re-resolves the macOS Appearance on
+  -- `FocusGained` and `VimResume`, so Appearance handling does not belong here.
+  -- `FocusGained` arrives through tmux because `tmux.conf` sets `focus-events on`.
+  --
+  -- `theme list` names the Themes; their manifests are in
+  -- `~/.config/theme-switcher/themes/`. See bryceeppler/bryces-theme-switcher.
 
-  -- Load the colorscheme here.
-  -- This theme ships several variants, e.g. 'github_dark', 'github_dark_dimmed',
-  -- 'github_dark_high_contrast', or the light 'github_light'.
-  vim.cmd.colorscheme 'github_dark_default'
+  -- The generated Lua, in the machine-local state directory that is never
+  -- committed, which is why the fallback below has to exist at all. ADR-0001 in
+  -- that repository accepts the duplication knowingly; `wezterm.lua` carries the
+  -- other half of it.
+  local GENERATED_LUA = vim.fs.normalize '~/.local/state/theme-switcher/nvim.lua'
+
+  -- What this config shows before the switcher has ever run on this machine. It
+  -- reproduces the whole of one Theme, `setup` included, because a fallback that
+  -- leaves comments italic is one nobody would trust the rest of.
+  local function fallback()
+    vim.pack.add { gh 'projekt0n/github-nvim-theme' }
+    require('github-theme').setup {
+      options = {
+        styles = {
+          comments = 'NONE', -- Disable italics in comments
+        },
+      },
+    }
+    vim.cmd.colorscheme 'github_dark_default'
+  end
+
+  -- Missing, unreadable, and malformed all land on the fallback rather than
+  -- raising. An error here would abort init.lua and leave every keymap below it
+  -- unset, which is a far worse machine to fix a colorscheme from.
+  --
+  -- `colors_name` catches the rest of a truncated write: the switcher writes that
+  -- file in place rather than renaming one into position, so half of it can be
+  -- valid Lua that never reaches a colorscheme. It is a floor rather than a
+  -- guarantee, since a Pairing truncated after its first apply looks identical to
+  -- a whole one until the Appearance next changes.
+  --
+  -- The fallback is guarded too, alone among this file's `vim.pack.add` calls.
+  -- Everywhere else a plugin that cannot be fetched is a broken install worth
+  -- hearing about; here it is the last resort, and it has no one left to hand a
+  -- failure to.
+  if not pcall(dofile, GENERATED_LUA) or vim.g.colors_name == nil then pcall(fallback) end
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }

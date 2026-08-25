@@ -1,7 +1,7 @@
 # Terminal cheat sheet — WezTerm + tmux + Neovim
 
-WezTerm takes its colors from the theme switcher: `theme` picks one, `theme list` names them all.
-Neovim uses **GitHub Dark Default**.
+WezTerm and Neovim both take their colors from the theme switcher: `theme` picks one, `theme list` names them all.
+Neither names a theme of its own any more, so switching re-colors both at once.
 tmux has no theme of its own: it follows the terminal's ANSI palette, so it re-themes itself whenever WezTerm does.
 Neovim's own keymap sheet lives at `~/.config/nvim/CHEATSHEET.md`.
 
@@ -137,6 +137,6 @@ tmux attach -t snapcaster  # right back where you were
 - tmux:    `~/.dotfiles/home/.config/tmux/`   → `~/.config/tmux/` (home-manager)
 - Neovim:  `~/.config/nvim/` (+ its own `CHEATSHEET.md`)
 - Themes:  `~/.dotfiles/home/.config/theme-switcher/` → `~/.config/theme-switcher/` (home-manager)
-- Neovim uses `~/.dotfiles/iterm2/GitHub Dark Default.itermcolors` as its palette source.
-  WezTerm no longer does: it shows whichever of its own built-in schemes the theme switcher names, and derives its tab bar from that scheme.
+- Neither WezTerm nor Neovim reads `~/.dotfiles/iterm2/GitHub Dark Default.itermcolors` any more.
+  WezTerm shows whichever of its own built-in schemes the theme switcher names, and derives its tab bar from that scheme; Neovim loads whichever colorscheme plugin the switcher names.
   tmux is not in that list on purpose: it reads no palette, and takes its colors from whatever ANSI colors the terminal defines.
