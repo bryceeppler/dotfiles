@@ -6,8 +6,10 @@
 [wezterm]
 config_file = "~/.config/wezterm/wezterm.lua"
 
-# The halves `theme follow` resolves between. Nominated explicitly, never
-# inferred from the Themes on disk.
+# The Themes nominated as the starting halves, explicitly rather than inferred
+# from the Themes on disk. They are read only when machine-local state has no
+# halves to offer; from the first switch onward, each half is whatever was last
+# adopted as it.
 [pairing]
 light = "catppuccin-latte"
 dark  = "github-dark-default"
