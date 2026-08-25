@@ -1,0 +1,9 @@
+display = "Rosé Pine"
+variant = "dark"
+
+[wezterm]
+scheme = "rose-pine"
+
+[nvim]
+plugin      = "rose-pine/neovim"
+colorscheme = "rose-pine-main"

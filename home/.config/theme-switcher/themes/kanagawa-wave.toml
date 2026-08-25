@@ -1,0 +1,14 @@
+# WezTerm has a built-in scheme for Kanagawa's Wave flavour only, so Wave is the
+# only Kanagawa that can be a Theme: Dragon and Lotus have no WezTerm half among
+# its 1079 built-in schemes, and a Theme names each ecosystem's own native theme
+# rather than carrying a palette. See ADR-0002.
+
+display = "Kanagawa Wave"
+variant = "dark"
+
+[wezterm]
+scheme = "Kanagawa (Gogh)"
+
+[nvim]
+plugin      = "rebelot/kanagawa.nvim"
+colorscheme = "kanagawa-wave"
