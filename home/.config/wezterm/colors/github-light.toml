@@ -1,0 +1,38 @@
+# Snapshot of WezTerm's current upstream `Github Light (Gogh)` scheme.
+# Source: https://github.com/wezterm/wezterm/blob/main/docs/colorschemes/data.json
+# Origin: https://github.com/Gogh-Co/Gogh/blob/master/data/json/github-light.json
+# Gogh source hash: 595ee5f5aa1ed0fed051764d411097a28caa706e1940480974b8b7a544c92ff6
+#
+# WezTerm stable 20240203 predates this corrected palette and aliases the same
+# name to an obsolete scheme, so the collision-free name below bridges that gap.
+
+[colors]
+foreground = "#1f2328"
+background = "#f6f8fa"
+cursor_bg = "#1f2328"
+cursor_border = "#1f2328"
+cursor_fg = "#f6f8fa"
+ansi = [
+  "#24292f",
+  "#cf222e",
+  "#1a7f37",
+  "#9a6700",
+  "#0969da",
+  "#8250df",
+  "#1b7c83",
+  "#6e7781",
+]
+brights = [
+  "#57606a",
+  "#a40e26",
+  "#2da44e",
+  "#bf8700",
+  "#218bff",
+  "#a475f9",
+  "#3192aa",
+  "#8c959f",
+]
+
+[metadata]
+name = "Github Light (Gogh Current)"
+origin_url = "https://github.com/Gogh-Co/Gogh"

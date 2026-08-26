@@ -2,6 +2,8 @@
 
 let
     dotfiles = "${config.home.homeDirectory}/.dotfiles";
+    githubLightScheme = builtins.fromTOML (builtins.readFile ./home/.config/wezterm/colors/github-light.toml);
+    githubLightTheme = builtins.fromTOML (builtins.readFile ./home/.config/theme-switcher/themes/github-light.toml);
     herdrTheme = (builtins.fromTOML (builtins.readFile ./home/.config/herdr/config.toml)).theme;
     preferDirectInstallPath = ''
         path=("$HOME/.local/bin" ''${path:#"$HOME/.local/bin"})
@@ -15,6 +17,14 @@ in
                 && herdrTheme.light_name == "kanagawa-lotus"
                 && !(herdrTheme.custom ? active_row_bg);
             message = "Herdr active rows need the contrast-tested Nord and Kanagawa Lotus mode pair; terminal bright black loses text contrast, while reset erases the selection cue.";
+        }
+        {
+            assertion = githubLightTheme.wezterm.scheme == githubLightScheme.metadata.name
+                && githubLightScheme.colors.foreground == "#1f2328"
+                && githubLightScheme.colors.background == "#f6f8fa"
+                && builtins.length githubLightScheme.colors.ansi == 8
+                && builtins.length githubLightScheme.colors.brights == 8;
+            message = "GitHub Light must use the corrected current Gogh scheme; WezTerm stable's built-in Github palette predates GitHub's native light colors.";
         }
     ];
 

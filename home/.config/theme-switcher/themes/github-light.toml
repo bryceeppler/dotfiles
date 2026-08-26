@@ -1,8 +1,10 @@
+# WezTerm stable's built-in `Github` palette predates GitHub's current light
+# colors. This names the corrected upstream Gogh snapshot loaded by wezterm.lua.
 display = "GitHub Light"
 variant = "light"
 
 [wezterm]
-scheme = "Github"
+scheme = "Github Light (Gogh Current)"
 
 [nvim]
 plugin      = "projekt0n/github-nvim-theme"

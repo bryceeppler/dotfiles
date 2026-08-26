@@ -17,11 +17,26 @@ config.font = wezterm.font_with_fallback {
 config.font_size = 14.0
 
 -- ── Colors ─────────────────────────────────────────────────────────────
--- No palette is authored here. The switcher names one of WezTerm's own built-in
--- schemes and everything below is derived from that scheme, so adding a Theme is
--- never a color edit in this file. See ADR-0002 in
--- bryceeppler/bryces-theme-switcher.
+-- No palette is authored here. The switcher names one of WezTerm's own schemes
+-- and everything below is derived from that scheme. GitHub Light is the one
+-- compatibility exception: stable WezTerm predates its corrected upstream Gogh
+-- palette, so that upstream scheme is loaded from colors/ until stable catches
+-- up. See ADR-0002 in bryceeppler/bryces-theme-switcher.
 local SCHEMES = wezterm.color.get_builtin_schemes()
+local EXTRA_SCHEME_FILES = {
+  ['Github Light (Gogh Current)'] = wezterm.config_dir .. '/colors/github-light.toml',
+}
+local extra_schemes = {}
+for name, path in pairs(EXTRA_SCHEME_FILES) do
+  local ok, scheme = pcall(wezterm.color.load_scheme, path)
+  if ok then
+    SCHEMES[name] = scheme
+    extra_schemes[name] = scheme
+  else
+    wezterm.log_error('failed to load color scheme ' .. name .. ' from ' .. path)
+  end
+end
+config.color_schemes = extra_schemes
 
 -- What this config shows before the switcher has ever run on the machine,
 -- which is the state a freshly cloned dotfiles repo is in. It duplicates one
@@ -131,7 +146,7 @@ local function tab_bar(background, foreground)
 end
 
 -- Whether a scheme can be shown at all, which is a stronger question than
--- whether WezTerm has one by that name. A scheme is not obliged to say what its
+-- whether the registry has one by that name. A scheme is not obliged to say what its
 -- background and foreground are, and `alacritty`, alone among the 1079, says
 -- nothing but its indexed colors and leaves WezTerm's own defaults to stand;
 -- there is nothing there to derive a tab bar from.

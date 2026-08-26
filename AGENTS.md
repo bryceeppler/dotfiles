@@ -41,3 +41,10 @@ Don't add one to either, and don't chase the lag after a theme switch: the switc
 `home/.claude/settings.json` is linked as a single file rather than by linking `~/.claude`, because everything else in that directory is runtime state (history, projects, credentials).
 Claude Code rewrites the file in place through the symlink instead of replacing it, which is what makes the link survive its own writes - verified against `claude plugin marketplace add` with a symlinked `settings.json`.
 Incidental writes from inside a session (survey timestamps, plugin state) therefore land in the repo as a diff; that is the cost of tracking the file at all, not a sign anything is wrong.
+
+## GitHub Light on WezTerm stable
+
+WezTerm stable `20240203` ships an obsolete `Github` palette and aliases `Github Light (Gogh)` to the same colors.
+Current upstream WezTerm carries the corrected Gogh palette only in nightly builds.
+`home/.config/wezterm/colors/github-light.toml` is a verbatim compatibility snapshot of that current upstream scheme under the collision-free name `Github Light (Gogh Current)`.
+Keep the GitHub Light Theme manifest pointed at that name until a stable WezTerm release contains the corrected scheme, then remove the snapshot and loader together.
