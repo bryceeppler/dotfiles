@@ -1,0 +1,9 @@
+display = "Ayu Mirage"
+variant = "dark"
+
+[wezterm]
+scheme = "Ayu Mirage"
+
+[nvim]
+plugin      = "Shatur/neovim-ayu"
+colorscheme = "ayu-mirage"

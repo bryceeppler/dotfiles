@@ -1,0 +1,9 @@
+display = "Terafox"
+variant = "dark"
+
+[wezterm]
+scheme = "terafox"
+
+[nvim]
+plugin      = "EdenEast/nightfox.nvim"
+colorscheme = "terafox"

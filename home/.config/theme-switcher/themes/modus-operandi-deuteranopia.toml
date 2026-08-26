@@ -1,14 +1,14 @@
-display = "Modus Operandi"
+display = "Modus Operandi Deuteranopia"
 variant = "light"
 
 [wezterm]
-scheme = "Modus-Operandi"
+scheme = "Modus-Operandi-Deuteranopia"
 
 [nvim]
 plugin      = "miikanissi/modus-themes.nvim"
 colorscheme = "modus"
 setup = '''
 require('modus-themes').setup {
-  variants = { modus_operandi = 'default' },
+  variants = { modus_operandi = 'deuteranopia' },
 }
 '''

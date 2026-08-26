@@ -1,0 +1,9 @@
+display = "PaperColor Light"
+variant = "light"
+
+[wezterm]
+scheme = "PaperColor Light (base16)"
+
+[nvim]
+plugin      = "NLKNguyen/papercolor-theme"
+colorscheme = "PaperColor"

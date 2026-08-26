@@ -1,0 +1,14 @@
+display = "Modus Vivendi Tritanopia"
+variant = "dark"
+
+[wezterm]
+scheme = "Modus-Vivendi-Tritanopia"
+
+[nvim]
+plugin      = "miikanissi/modus-themes.nvim"
+colorscheme = "modus"
+setup = '''
+require('modus-themes').setup {
+  variants = { modus_vivendi = 'tritanopia' },
+}
+'''

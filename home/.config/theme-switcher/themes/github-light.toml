@@ -1,0 +1,9 @@
+display = "GitHub Light"
+variant = "light"
+
+[wezterm]
+scheme = "Github"
+
+[nvim]
+plugin      = "projekt0n/github-nvim-theme"
+colorscheme = "github_light"

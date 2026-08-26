@@ -1,0 +1,14 @@
+display = "Modus Vivendi Deuteranopia"
+variant = "dark"
+
+[wezterm]
+scheme = "Modus-Vivendi-Deuteranopia"
+
+[nvim]
+plugin      = "miikanissi/modus-themes.nvim"
+colorscheme = "modus"
+setup = '''
+require('modus-themes').setup {
+  variants = { modus_vivendi = 'deuteranopia' },
+}
+'''

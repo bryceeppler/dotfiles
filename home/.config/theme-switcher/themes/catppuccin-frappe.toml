@@ -1,0 +1,9 @@
+display = "Catppuccin Frappé"
+variant = "dark"
+
+[wezterm]
+scheme = "Catppuccin Frappe"
+
+[nvim]
+plugin      = "catppuccin/nvim"
+colorscheme = "catppuccin-frappe"

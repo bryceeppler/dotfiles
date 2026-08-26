@@ -1,0 +1,12 @@
+display = "Gruvbox Dark Soft"
+variant = "dark"
+
+[wezterm]
+scheme = "Gruvbox dark, soft (base16)"
+
+[nvim]
+plugin      = "morhetz/gruvbox"
+colorscheme = "gruvbox"
+setup = '''
+vim.g.gruvbox_contrast_dark = 'soft'
+'''

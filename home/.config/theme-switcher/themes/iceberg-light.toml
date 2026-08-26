@@ -1,0 +1,9 @@
+display = "Iceberg Light"
+variant = "light"
+
+[wezterm]
+scheme = "iceberg-light"
+
+[nvim]
+plugin      = "cocopon/iceberg.vim"
+colorscheme = "iceberg"

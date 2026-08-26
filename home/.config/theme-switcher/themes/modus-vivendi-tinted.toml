@@ -1,14 +1,14 @@
-display = "Modus Operandi"
-variant = "light"
+display = "Modus Vivendi Tinted"
+variant = "dark"
 
 [wezterm]
-scheme = "Modus-Operandi"
+scheme = "Modus-Vivendi-Tinted"
 
 [nvim]
 plugin      = "miikanissi/modus-themes.nvim"
 colorscheme = "modus"
 setup = '''
 require('modus-themes').setup {
-  variants = { modus_operandi = 'default' },
+  variants = { modus_vivendi = 'tinted' },
 }
 '''

@@ -1,0 +1,9 @@
+display = "Solarized Dark"
+variant = "dark"
+
+[wezterm]
+scheme = "Builtin Solarized Dark"
+
+[nvim]
+plugin      = "altercation/vim-colors-solarized"
+colorscheme = "solarized"

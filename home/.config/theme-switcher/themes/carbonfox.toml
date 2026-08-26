@@ -1,0 +1,9 @@
+display = "Carbonfox"
+variant = "dark"
+
+[wezterm]
+scheme = "carbonfox"
+
+[nvim]
+plugin      = "EdenEast/nightfox.nvim"
+colorscheme = "carbonfox"

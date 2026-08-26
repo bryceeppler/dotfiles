@@ -1,0 +1,9 @@
+display = "Nordfox"
+variant = "dark"
+
+[wezterm]
+scheme = "nordfox"
+
+[nvim]
+plugin      = "EdenEast/nightfox.nvim"
+colorscheme = "nordfox"

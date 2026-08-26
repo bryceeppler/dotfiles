@@ -1,0 +1,9 @@
+display = "Dawnfox"
+variant = "light"
+
+[wezterm]
+scheme = "dawnfox"
+
+[nvim]
+plugin      = "EdenEast/nightfox.nvim"
+colorscheme = "dawnfox"
