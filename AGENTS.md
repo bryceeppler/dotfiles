@@ -14,7 +14,7 @@ So any CLI those shells need from profile-specific paths must go through `home.s
 
 ## Follower configs: never dim with bright black
 
-Configs that follow the terminal palette (tmux today; anything else that stops carrying its own theme) reach for `colour8`/bright black as the "muted" colour.
+Configs that follow the terminal palette (tmux and Herdr today; anything else that stops carrying its own theme) reach for `colour8`/bright black as the "muted" colour.
 It is the wrong slot.
 Bright black is under 3:1 contrast against its own scheme's background in 687 of WezTerm's 1078 built-in schemes, and Solarized Dark sets it to *exactly* the background, which erases the text outright rather than merely dimming it.
 Measured by walking `wezterm.color.get_builtin_schemes()` from a throwaway `--config-file` and computing WCAG contrast per scheme.
@@ -23,6 +23,10 @@ Use `default` plus the `dim` attribute instead.
 That dims the terminal's own foreground, so it tracks the palette, and a terminal that ignores `dim` degrades to plain readable text rather than to invisible text.
 The same argument makes `reverse` the right way to draw a coloured pill: it paints the label in the terminal's background colour, which is the one colour guaranteed to contrast with the pill under both light and dark schemes.
 `fg=colour0` or `fg=colour15` each work under only one of the two.
+
+Herdr's built-in `terminal` theme uses ANSI bright black for `active_row_bg` and ANSI white for several neutral labels.
+Those combinations fail on many light schemes, including Rosé Pine Dawn and GitHub Light.
+Keep `active_row_bg`, `overlay0`, `overlay1`, `subtext0`, and `mauve` set to `reset` under `[theme.custom]` so neutral UI inherits the terminal's own background and foreground.
 
 ## Agent CLI themes: leave them following the terminal
 

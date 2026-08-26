@@ -21,5 +21,15 @@ row_gap = 1
 name = "terminal"
 
 auto_switch = false
+
+[theme.custom]
+# ANSI bright black and ANSI white are not stable UI surfaces across schemes.
+# Keep neutral rows and labels on the terminal's own background and foreground.
+active_row_bg = "reset"
+overlay0 = "reset"
+overlay1 = "reset"
+subtext0 = "reset"
+mauve = "reset"
+
 [ui.toast]
 delivery = "system"
