@@ -2,11 +2,22 @@
 
 let
     dotfiles = "${config.home.homeDirectory}/.dotfiles";
+    herdrTheme = (builtins.fromTOML (builtins.readFile ./home/.config/herdr/config.toml)).theme;
     preferDirectInstallPath = ''
         path=("$HOME/.local/bin" ''${path:#"$HOME/.local/bin"})
     '';
 in
 {
+    assertions = [
+        {
+            assertion = herdrTheme.auto_switch
+                && herdrTheme.dark_name == "nord"
+                && herdrTheme.light_name == "kanagawa-lotus"
+                && !(herdrTheme.custom ? active_row_bg);
+            message = "Herdr active rows need the contrast-tested Nord and Kanagawa Lotus mode pair; terminal bright black loses text contrast, while reset erases the selection cue.";
+        }
+    ];
+
     home = {
         username = "bryceeppler";
         homeDirectory = "/Users/bryceeppler";

@@ -16,20 +16,32 @@ rows = [
 row_gap = 1
 
 [theme]
-# Herdr is a Follower: the terminal theme takes its colors straight from the
-# ANSI palette, so whatever `theme` puts on WezTerm is what Herdr wears.
-name = "terminal"
+# Herdr cannot express reverse-video active rows in its terminal theme.
+# This pair supplies mode-aware row, cursor, and primary-text colors.
+name = "nord"
 
-auto_switch = false
+auto_switch = true
+dark_name = "nord"
+light_name = "kanagawa-lotus"
 
 [theme.custom]
-# ANSI bright black and ANSI white are not stable UI surfaces across schemes.
-# Keep neutral rows and labels on the terminal's own background and foreground.
-active_row_bg = "reset"
+# Every other token still inherits the host terminal palette.
+accent = "blue"
+panel_bg = "reset"
+sidebar_bg = "reset"
+surface0 = "reset"
+surface1 = "reset"
+surface_dim = "reset"
 overlay0 = "reset"
 overlay1 = "reset"
 subtext0 = "reset"
 mauve = "reset"
+green = "green"
+yellow = "yellow"
+red = "lightred"
+blue = "blue"
+teal = "cyan"
+peach = "yellow"
 
 [ui.toast]
 delivery = "system"
